@@ -1,0 +1,72 @@
+
+.container{
+    height:100%;
+    position:relative;
+    margin-top: 20px;
+}
+
+.plot{
+    position:relative;
+    width: 100%;
+    height: 300px;
+    float:left;
+    margin: 10px 0 0;
+}
+    .plot .bar{
+        fill: rgb(220,220,220);
+    }
+
+
+.axis .domain{
+    display:none;
+}
+.axis line{
+    stroke: white;
+    stroke-width: 0.8;
+    opacity: 0.9;
+}
+.axis text{
+    font-size: 10px;
+    color: rgb(200,200,200);
+}
+
+.label .label-y text{
+    stroke: none;
+    font-size: 10px;
+    color: rgb(200,200,200);
+}
+
+.value .value-x text{
+    stroke: none;
+    font-size: 10px;
+    color: rgb(200,200,200);
+}
+
+/*--------------drop-down + button--------------*/
+.controls{
+    float:left;
+    height:100%;
+    width:30%;
+}
+    .drop-down .select{
+        width:70%;
+        float:left;
+        margin:0 5% 0 0;
+    }
+
+.btn-group .station{
+    float:left;
+    font-size: 12px;
+    margin-right: 3px;
+}
+
+.btn-group .time{
+    float:left;
+    font-size: 12px;
+    margin-right: 3px;
+}
+
+/*--------------font--------------*/
+h1{ font-size: 30px;}
+h2{ font-size:18px;}
+p{ font-size: 10px;}

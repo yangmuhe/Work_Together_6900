@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A D3 map</title>
+  <link rel="stylesheet" href="css/map.css"/>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="http://d3js.org/d3-queue.v2.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="../lib/crossfilter/crossfilter.js"></script>
+  
+  <!--<script src="data/boston_regions_zip_codes_rdw.json"></script>-->
+  <!--MUHE LINKS-->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+	<div class="backg">
+    		<div class="intro_text">
+          <h2>HUBWAY BIKE SHARING NETWORK<br>Directionality and Frequency of Trips</h2>
+            <div class="author">
+              <h5><strong>Patrick J. O'Donnel and Muhe Yang</strong><br>NEU Information Design and Visualization, 2016</h5>
+            </div>
+        </div>
+
+        <div class="titles">
+          <h4>Select Station on the Map</h4>
+          <h4>Select Trips to Analyze</h4>
+        </div>
+    		
+        <div id="plot"> </div>
+        <div id="right"> 
+            <div id="buttons"> 
+              <div class="start_end">
+                <button type="button" id="se1">Starting from</button>
+                <button type="button" id="se2">Ending at</button>
+              </div>
+              <div class="station_select"> 
+                <select id="dropdown"> </select>
+              </div>
+            </div>
+
+            <!--MUHE MODULE-->
+            <div id="chart">
+            <div class="container">
+             <header>
+                <div class="row">
+                  <h1>Hubway Data Visualization</h1>
+                </div>
+            </header>
+            <div class="controls drop-down">
+              <div class="select">
+                <span>Choose Station</span>
+                <select class="form-control station">
+                    <option value="">Station</option>
+                </select>
+              </div>
+            </div>
+          <div class="controls btn-group">
+            <a href="#" class="btn btn-default station" id="startstation">Start</a>
+            <a href="#" class="btn btn-default station" id="endstation">End</a>
+            <a href="#" class="btn btn-default time" id="morning">Morning</a>
+            <a href="#" class="btn btn-default time" id="afternoon">Afternoon</a>
+            <a href="#" class="btn btn-default time" id="evening">Evening</a>
+          </div>
+
+          <div class="plot"></div>
+        </div> 
+            </div>
+
+
+
+            <div id="buttons2">
+              <div class="time_of_day">
+                <button type="button" id="tod1">Morning</button>
+                <button type="button" id="tod2">Afternoon</button>
+                <button type="button" id="tod3">Evening</button>
+              </div>
+              <div class="duration">
+                <button type="button" id="dur1">Short</button>
+                <button type="button" id="dur2">Long</button>
+              </div>
+
+            </div>
+        </div>
+
+
+  		<script src="scripts/map.js"></script>
+
+      <!--MUHE's SCRIPTS-->
+      <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+      <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+      <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script src="../lib/crossfilter/crossfilter.js"></script>
+
+      <script src="stationChart.js"></script>
+      <script src="script.js"></script>
+	</div>
+</body>
+</html>

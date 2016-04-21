@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{"type":"Polygon","properties":{"name":"BROOKLINE","zip":"02445","state":"MA"},"arcs":[[-1838,2013,-1853,2014,-1931,-1793]]},{"type":"Polygon","properties":{"name":"BROOKLINE","zip":"02446","state":"MA"},"arcs":[[-2015,-1852,-1847,-1930]]}
+]
+}

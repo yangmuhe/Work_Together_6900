@@ -1,0 +1,122 @@
+/*PAGE SETUP*/
+body 
+{
+	padding: 10px 40px 10px 40px;
+}
+
+#plot 
+{
+	width: 700px;
+	height: 700px;
+	position: relative;
+	float:left;
+	
+}
+
+#right
+{
+	background-color:lightyellow;
+	float:left;
+	width: 700px;
+	height: 700px;
+	position:relative;
+}
+
+.intro_text
+{
+	width: 1400px;
+	position: relative;
+	float:left;
+	margin: 0 0 10px 0;
+	background-color:orange;
+}
+
+.intro_text > h1 
+{
+	padding-top: 5px;
+}
+
+.intro_text > *
+{
+	width: 700px;
+	position: relative;
+	float: left;
+}
+
+.author
+{
+	background-color: lightpink;
+}
+
+h4
+{
+	
+}
+
+h5
+{
+	background: lightgreen;
+	text-align: right;
+	margin-top: 44px;
+	margin-bottom:0px;
+}
+
+.titles
+{
+	width: 1400px;
+	background-color: lightblue;
+	position: relative;
+	float:left;
+}
+
+.titles > *
+{
+	width: 700px;
+	background-color: slategray;
+	position: relative;
+	float: left;
+	margin: 30px 0 5px 0;
+}
+
+#buttons
+{
+	width: 100%;
+	height: 15%;
+	background-color: pink;
+	
+}
+
+#buttons2
+{
+	width: 100%;
+	height: 15%;
+	background-color: gray;
+}
+
+#chart
+{
+	width: 100%;
+	height: 70%;
+	background-color: slateblue;
+	
+}
+/*MAP*/
+.overlay {
+  background-color: none;
+  pointer-events: all;
+}
+
+.neighborhoods {
+	stroke: #000;
+	stroke-width: .5;
+}
+
+.boston {
+	background-color: yellow;
+}
+
+.station_dot {
+	background-color: blue;
+	stroke: darkblue;
+	stroke-width: .7;
+}
