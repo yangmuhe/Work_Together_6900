@@ -1,8 +1,13 @@
+html,body{
+    height: 100%;
+    position: relative;
+}
 
-.container{
-    height:100%;
+/*-------------------Module---------------*/
+#chart{
+    width: 100%;
     position:relative;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .plot{
@@ -43,16 +48,12 @@
 }
 
 /*--------------drop-down + button--------------*/
-.controls{
+
+.drop-down .select{
     float:left;
-    height:100%;
     width:30%;
+    margin:0 5% 0 0;
 }
-    .drop-down .select{
-        width:70%;
-        float:left;
-        margin:0 5% 0 0;
-    }
 
 .btn-group .station{
     float:left;
@@ -67,6 +68,20 @@
 }
 
 /*--------------font--------------*/
-h1{ font-size: 30px;}
-h2{ font-size:18px;}
-p{ font-size: 10px;}
+h1{
+    font-size: 30px;
+    margin-bottom: 0;
+}
+h2{
+    font-size:15px;
+}
+p{
+    font-size: 10px;
+}
+h3{
+    font-size: 12px;
+    line-height: 150%;
+    color: rgb(150,150,150);
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 0;
+}

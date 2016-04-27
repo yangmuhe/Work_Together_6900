@@ -66,11 +66,8 @@ d3.StationChart = function(){
             //.attr('height', barWidth)
             .attr('width',function(d){return scaleX(d.values);})
             .style("fill-opacity", 1)
+        //console.log(scaleY.rangeBand());
 
-
-
-
-        console.log(scaleY.rangeBand());
 
         //add labels on x-axis
         var labelY = svg.select('.label')

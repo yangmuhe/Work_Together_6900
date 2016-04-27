@@ -1,6 +1,5 @@
-/**
- * Created by yangmuhe on 3/22/16.
- */
+/** Created by yangmuhe on 3/22/16. ...*/
+
 var w = d3.select('.plot').node().clientWidth,
     h = d3.select('.plot').node().clientHeight;
 
@@ -40,6 +39,7 @@ d3_queue.queue()
     .defer(d3.csv,'../data/hubway_stations.csv',parseStations)
     .await(dataLoaded);
 
+
 function dataLoaded(err,rows,stations){
 
     //crossfilter and dimensions
@@ -55,6 +55,7 @@ function dataLoaded(err,rows,stations){
     //drop-down menu: choose station
     d3.select('.station').on('change',function(){
         console.log(this.value);
+        var id = d3.select(this).attr('id');
         //if(!this.value) tripsByStart1.filter(null);
         //else {tripsByStart1.filter(this.value);}
 
@@ -75,7 +76,6 @@ function dataLoaded(err,rows,stations){
         console.log(topTripsStart);
 
 
-
         //choose the station as end station
         var nestEnd = d3.nest()
             .key(function(d){return d.startStation})
@@ -86,7 +86,9 @@ function dataLoaded(err,rows,stations){
         var topTripsEnd = cf2End.dimension(function(d){return d.values;}).top(10);
 
 
+        //pass on the array of trips to dispatcher
         dispatcherStation.changestation(topTripsStart);
+
 
         //choose specific time span
         var morning = [new Date(0,0,0,6,0), new Date(0,0,0,12,0)],
@@ -95,62 +97,44 @@ function dataLoaded(err,rows,stations){
 
         //when click button "start" or "end"
         d3.selectAll('.btn-group .station').on('click', function(){
-            var id = d3.select(this).attr('id');
-            if(id=='startstation'){
+            var idStartEnd = d3.select(this).attr('id');
+            if(idStartEnd=='startstation'){
                 dispatcherStation.changestation(topTripsStart);
 
                 //when click button "morning", "afternoon" or "evening"
                 d3.selectAll('.btn-group .time').on('click', function(){
-                    var id = d3.select(this).attr('id');
-                    if(id=='morning'){
-                        //var tripsByTimeMorning = tripsByTimeStart.filter(morning).top(Infinity);
-                        //var nestTime = d3.nest()
-                        //    .key(function(d){return d.endStation})
-                        //    .rollup(function(d){return d.length})  //rollup!!
-                        //    .entries(tripsByTimeMorning);
-                        //
-                        //var cfTime = crossfilter(nestTime);
-                        //var topTripsTime = cfTime.dimension(function(d){return d.values;}).top(10);
+                    var idTime = d3.select(this).attr('id');
+                    if(idTime=='morning'){
                         var topTripsStartMorning = timeDimension(tripsByTimeStart, morning);
                         console.log(topTripsStartMorning);
                         dispatcherStation.changestation(topTripsStartMorning);
-                    }if(id=='afternoon'){
+                    }if(idTime=='afternoon'){
                         var topTripsStartAfternoon = timeDimension(tripsByTimeStart, afternoon);
                         console.log(topTripsStartAfternoon);
                         dispatcherStation.changestation(topTripsStartAfternoon);
-                    }if(id=='evening'){
+                    }if(idTime=='evening'){
                         var topTripsStartEvening = timeDimension(tripsByTimeStart, evening);
                         console.log(topTripsStartEvening);
                         dispatcherStation.changestation(topTripsStartEvening);
                     }
                 })
 
-            }if(id=='endstation'){
+            }if(idStartEnd=='endstation'){
                 console.log(topTripsEnd);
                 dispatcherStation.changestation(topTripsEnd);
 
                 //when click button "morning", "afternoon" or "evening"
                 d3.selectAll('.btn-group .time').on('click', function(){
-                    var id = d3.select(this).attr('id');
-                    if(id=='morning'){
-                        //var tripsByTimeMorning = tripsByTimeEnd.filter(morning).top(Infinity);
-                        //var nestTime = d3.nest()
-                        //    .key(function(d){return d.startStation})
-                        //    .rollup(function(d){return d.length})  //rollup!!
-                        //    .entries(tripsByTimeMorning);
-                        //
-                        //var cfTime = crossfilter(nestTime);
-                        //var topTripsTime = cfTime.dimension(function(d){return d.values;}).top(10);
-                        //dispatcherStation.changestation(topTripsTime);
-
+                    var idTime = d3.select(this).attr('id');
+                    if(idTime=='morning'){
                         var topTripsEndMorning = timeDimensionEnd(tripsByTimeEnd, morning);
                         console.log(topTripsEndMorning);
                         dispatcherStation.changestation(topTripsEndMorning);
-                    }if(id=='afternoon'){
+                    }if(idTime=='afternoon'){
                         var topTripsEndAfternoon = timeDimensionEnd(tripsByTimeEnd, afternoon);
                         console.log(topTripsEndAfternoon);
                         dispatcherStation.changestation(topTripsEndAfternoon);
-                    }if(id=='evening'){
+                    }if(idTime=='evening'){
                         var topTripsEndEvening = timeDimensionEnd(tripsByTimeEnd, evening);
                         console.log(topTripsEndEvening);
                         dispatcherStation.changestation(topTripsEndEvening);
@@ -160,35 +144,14 @@ function dataLoaded(err,rows,stations){
         });
 
 
-
-
-        ////when click button "morning", "afternoon" or "evening"
-        //d3.selectAll('.btn-group .time').on('click', function(){
-        //    var id = d3.select(this).attr('id');
-        //    if(id=='morning'){
-        //        var tripsByTimeMorning = tripsByTimeStart.filter(morning).top(Infinity);
-        //        var nestTime = d3.nest()
-        //            .key(function(d){return d.endStation})
-        //            .rollup(function(d){return d.length})  //rollup!!
-        //            .entries(tripsByTimeMorning);
-        //
-        //        var cfTime = crossfilter(nestTime);
-        //        var topTripsTime = cfTime.dimension(function(d){return d.values;}).top(10);
-        //        console.log(topTripsTime);
-        //        dispatcherStation.changestation(topTripsTime);
-        //    }if(id=='afternoon'){
-        //
-        //    }else{
-        //
-        //    }
-        //})
-
     })
 
 
 } //end of dataLoaded
 
 
+
+//Get array of trips if choosing station as start station
 function timeDimension(cfdimension, time){
     var tripsByTimeMorning = cfdimension.filter(time).top(Infinity);
     var nestTime = d3.nest()
@@ -203,6 +166,7 @@ function timeDimension(cfdimension, time){
 }
 
 
+//Get array of trips if choosing station as end station
 function timeDimensionEnd(cfdimension, time){
     var tripsByTimeMorning = cfdimension.filter(time).top(Infinity);
     var nestTime = d3.nest()
