@@ -3,11 +3,75 @@ html,body{
     position: relative;
 }
 
+/*-------------------Title---------------*/
+.intro_text{
+    width: 50%;
+    position: relative;
+    float:left;
+    margin: 0 0 15px 0;
+}
+
+.intro_text > h1{
+    padding-top: 5px;
+}
+
+.intro_text > *{
+    position: relative;
+    float: left;
+}
+
+/*-------------------Map---------------*/
+#plot{
+    width: 65%;
+    height: 700px;
+    position: relative;
+    float:left;
+}
+
+.overlay {
+    background-color: none;
+    pointer-events: all;
+}
+
+.neighborhoods {
+    stroke: white;
+    stroke-width: 1px;
+}
+
+.boston {
+    background-color: yellow;
+}
+
+.station_dot {
+    background-color: blue;
+    stroke: darkblue;
+    stroke-width: .7;
+}
+
+.neighborhoods{
+    fill: rgb(200,200,200);
+}
+
+/*-------------------right---------------*/
+#right{
+    float:left;
+    width: 30%;
+    margin-left: 10px;
+    position:relative;
+}
+
+.author{
+    margin-top: 10%;
+    width: 20%;
+    float: right;
+}
+
 /*-------------------Module---------------*/
 #chart{
     width: 100%;
     position:relative;
     margin-top: 10px;
+    background-color: white;
 }
 
 .plot{
@@ -18,7 +82,7 @@ html,body{
     margin: 10px 0 0;
 }
     .plot .bar{
-        fill: rgb(220,220,220);
+        fill: rgb(200,200,200);
     }
 
 
@@ -37,22 +101,26 @@ html,body{
 
 .label .label-y text{
     stroke: none;
-    font-size: 10px;
-    color: rgb(200,200,200);
+    font-size: 11px;
+    font-weight: 100;
+    color: red;
 }
 
 .value .value-x text{
     stroke: none;
     font-size: 10px;
-    color: rgb(200,200,200);
+    color: red;
 }
 
 /*--------------drop-down + button--------------*/
 
 .drop-down .select{
     float:left;
-    width:30%;
+    width:35%;
     margin:0 5% 0 0;
+}
+.drop-down .select option{
+    font-size: 12px;
 }
 
 .btn-group .station{
@@ -69,19 +137,25 @@ html,body{
 
 /*--------------font--------------*/
 h1{
-    font-size: 30px;
+    font-size: 26px;
+    margin-left: 10%;
     margin-bottom: 0;
 }
+
 h2{
-    font-size:15px;
+    font-size:18px;
+    margin-left: 10%;
+    margin-top: 1%;
 }
-p{
-    font-size: 10px;
-}
+
 h3{
-    font-size: 12px;
+    font-size: 10px;
     line-height: 150%;
     color: rgb(150,150,150);
     font-family: 'Open Sans', sans-serif;
     margin-top: 0;
+}
+
+p{
+    font-size: 10px;
 }

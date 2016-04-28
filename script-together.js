@@ -12,9 +12,9 @@ var dispatcherStation = d3.dispatch('drawchart', 'getstationid');
 
 //Module
 var stationChart = d3.StationChart()
-    .width(400).height(300)
-    .margin([15,0,5,30])
-//.barWidth(20)
+    .width(350).height(300)
+    .margin([15,0,10,10])
+    //.barWidth(20)
 
 var plot = d3.select('.plot').datum([]).call(stationChart);
 
@@ -24,7 +24,11 @@ var morning = [new Date(0,0,0,6,0), new Date(0,0,0,12,0)],
     afternoon = [new Date(0,0,0,12,0), new Date(0,0,0,19,0)],
     evening = [new Date(0,0,0,19,0), new Date(0,0,0,24,0)];
 
+//d3.map
+//var stationNameID;
 
+
+//Draw charts
 dispatcherStation.on('drawchart',function(array){
     //console.log(id);
 
@@ -80,7 +84,7 @@ var geoPath = d3.geo.path()
 
 d3_queue.queue()
     .defer(d3.csv,'data/hubway_trips_reduced.csv', parse)
-    .defer(d3.csv,'data/hubway_stations.csv', parseStations)
+    .defer(d3.csv,'data/hubway_stations-changed.csv', parseStations)
     .defer(d3.json, 'data/neighborhoods.json') //boston
     .defer(d3.json, 'data/camb_zipcode.json') //cambridge
     .defer(d3.json, 'data/somerville_wards.json') //sommerville
@@ -89,6 +93,15 @@ d3_queue.queue()
 
 
 function dataLoaded(err, rows, stations, bos, cam, som, bro){
+
+    console.log(stations);
+
+    //Look-up table of station ID and name
+    var stationNameID = d3.map(stations, function(d){return d.id;});
+    console.log(stationNameID.get(3).fullName); //!!
+
+    stationChart.labels(stations);
+
 
     //crossfilter and dimensions
     var cfStart = crossfilter(rows);
@@ -212,7 +225,7 @@ function dataLoaded(err, rows, stations, bos, cam, som, bro){
         .append('path')
         .attr('class', 'boston neighborhoods')
         .attr( 'd', geoPath )
-        .style('fill', '#888') //boston
+        //.style('fill', '#888') //boston
         .on("click", clicked);
 
     g.selectAll( ".cambridge" )
@@ -221,7 +234,7 @@ function dataLoaded(err, rows, stations, bos, cam, som, bro){
         .append('path')
         .attr('class', 'cambridge neighborhoods')
         .attr( "d", geoPath )
-        .style('fill', '#999') //cambridge
+        //.style('fill', '#999') //cambridge
         .on("click", clicked);
 
     g.selectAll( ".somerville" )
@@ -230,7 +243,7 @@ function dataLoaded(err, rows, stations, bos, cam, som, bro){
         .append('path')
         .attr('class', 'somerville neighborhoods')
         .attr( "d", geoPath )
-        .style('fill', '#aaa')
+        //.style('fill', '#aaa')
         .on("click", clicked); //somerville
 
     g.selectAll( ".brookline" )
@@ -239,7 +252,7 @@ function dataLoaded(err, rows, stations, bos, cam, som, bro){
         .append('path')
         .attr('class', 'brookline neighborhoods')
         .attr( "d", geoPath )
-        .style('fill', '#bbb')
+        //.style('fill', '#bbb')
         .on("click", clicked); //somerville
     //END OF NEIGHBORHOODS ON MAP
 
@@ -329,7 +342,7 @@ function set_station_num (d) {
     var stationid = d.id;
     //console.log(stationid);
 
-    d3.select(".station").node().value = stationid;
+    d3.select(".station").node().value = stationid; //!!!
 
     dispatcherStation.getstationid(stationid);
 
